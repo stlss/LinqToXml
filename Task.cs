@@ -142,18 +142,21 @@ namespace LinqToXml
 
             _ = xDocument.Descendants().ToList().Select(element => 
                 {
-                    XElement xElement = new(
-                        "has-comments", 
-                        element.Nodes().Any(node => node.NodeType == XmlNodeType.Comment)
-                    );
+                    if (element.Nodes().Count() != 0)
+                    {
+                        XElement xElement = new(
+                            "has-comments",
+                            element.Nodes().Any(node => node.NodeType == XmlNodeType.Comment)
+                        );
 
-                    var nodes = element.Nodes().ToList();
-                    if (nodes.Count > 1)
-                        nodes.Insert(1, xElement);
-                    else
-                        nodes.Add(xElement);
+                        var nodes = element.Nodes().ToList();
+                        if (nodes.Count > 1)
+                            nodes.Insert(1, xElement);
+                        else
+                            nodes.Add(xElement);
 
-                    element.ReplaceNodes(nodes);
+                        element.ReplaceNodes(nodes);
+                    }
                     return element; 
                 }).
                 ToList();
@@ -179,12 +182,6 @@ namespace LinqToXml
 
             xDocument.Root!.Add(new XAttribute(XNamespace.Xmlns + "x", s1));
             xDocument.Root!.Add(new XAttribute(XNamespace.Xmlns + "y", s2));
-
-            _ = xDocument.Descendants().ToList().Select(element =>
-            {
-                return element;
-            }).
-            ToList();
 
             _ = xDocument.Root!.Elements().Select(element => 
                 {
@@ -272,7 +269,7 @@ namespace LinqToXml
                         OrderBy(debt => int.Parse(debt.Attribute("house")!.Value)).
                         ThenBy(debt => int.Parse(debt.Attribute("flat")!.Value)).
                         Select(debt => new XElement(
-                            "house" + debt.Attribute("house")!.Value + 
+                            "address" + debt.Attribute("house")!.Value + 
                                 "-" + debt.Attribute("flat")!.Value,
                             new XAttribute("name", debt.Attribute("name")!.Value),
                             new XAttribute("debt", debt.Value)
@@ -332,10 +329,10 @@ namespace LinqToXml
         /// <summary>
         /// Решить задание 10.
         /// </summary>
-        public static void Solve80()
+        public static void Solve81()
         {
-            string pathXmlFile1 = pathFilesTasks + "10-80\\XMLFile1.xml";
-            string pathXmlFile2 = pathFilesTasks + "10-80\\XMLFile2.xml";
+            string pathXmlFile1 = pathFilesTasks + "10-81\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "10-81\\XMLFile2.xml";
 
             XDocument xDocument1 = XDocument.Load(pathXmlFile1);
 
@@ -360,7 +357,7 @@ namespace LinqToXml
                                         debtor.Element("debt")!.Attribute("value")!.Value,
                                         new NumberFormatInfo { NumberDecimalSeparator = "." })
                                     ) * 100) /                  // Суммарный размер задолженностей * 100.
-                                    debtors.Key / 100
+                                    debtors.Count() / 100
                                 ),
                                 debtors.OrderBy(debtor =>       // Сортировка должников подъезда по номеру этажа.
                                 double.Parse(
