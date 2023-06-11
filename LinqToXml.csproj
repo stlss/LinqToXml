@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="FilesTasks\87-9\" />
-    <Folder Include="FilesTasks\88-10\" />
-  </ItemGroup>
-
 </Project>

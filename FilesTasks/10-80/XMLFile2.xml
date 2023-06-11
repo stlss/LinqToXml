@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <house5>
+    <entrance number="1" count="1" avr-debt="100">
+      <debt flat="12" name="Максимов_М.М.">100.12</debt>
+    </entrance>
+    <entrance number="4" count="1" avr-debt="30">
+      <debt flat="123" name="Иванов_А.В">123.635</debt>
+    </entrance>
+  </house5>
+  <house12>
+    <entrance number="1" count="2" avr-debt="1345">
+      <debt flat="12" name="Максимов_М.М.">100.12</debt>
+      <debt flat="26" name="Иванов_А.В">1245.64</debt>
+    </entrance>
+  </house12>
+</root>

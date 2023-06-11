@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<house number ="12">
+		<Иванов_А.В>
+			<flat value ="26"/>
+			<debt value="1245.64"/>
+		</Иванов_А.В>
+		<Максимов_М.М.>
+			<flat value ="12"/>
+			<debt value="100.12"/>
+		</Максимов_М.М.>
+	</house>
+	<house number ="5">
+		<Иванов_А.В>
+			<flat value ="123"/>
+			<debt value="123.635"/>
+		</Иванов_А.В>
+		<Максимов_М.М.>
+			<flat value ="12"/>
+			<debt value="100.12"/>
+		</Максимов_М.М.>
+	</house>
+</root>

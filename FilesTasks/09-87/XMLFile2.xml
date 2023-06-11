@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Физика>
+    <class7 pupil-count="0" mark-count="0" />
+    <class8 pupil-count="0" mark-count="0" />
+    <class9 pupil-count="1" mark-count="1" />
+    <class10 pupil-count="0" mark-count="0" />
+    <class11 pupil-count="1" mark-count="0" />
+  </Физика>
+  <Химия>
+    <class7 pupil-count="0" mark-count="0" />
+    <class8 pupil-count="0" mark-count="0" />
+    <class9 pupil-count="1" mark-count="3" />
+    <class10 pupil-count="0" mark-count="0" />
+    <class11 pupil-count="1" mark-count="2" />
+  </Химия>
+  <История>
+    <class7 pupil-count="0" mark-count="0" />
+    <class8 pupil-count="0" mark-count="0" />
+    <class9 pupil-count="1" mark-count="0" />
+    <class10 pupil-count="0" mark-count="0" />
+    <class11 pupil-count="1" mark-count="1" />
+  </История>
+  <Математика>
+    <class7 pupil-count="0" mark-count="0" />
+    <class8 pupil-count="0" mark-count="0" />
+    <class9 pupil-count="1" mark-count="0" />
+    <class10 pupil-count="0" mark-count="0" />
+    <class11 pupil-count="1" mark-count="1" />
+  </Математика>
+  <Химия>
+    <class7 pupil-count="0" mark-count="0" />
+    <class8 pupil-count="0" mark-count="0" />
+    <class9 pupil-count="1" mark-count="3" />
+    <class10 pupil-count="0" mark-count="0" />
+    <class11 pupil-count="1" mark-count="2" />
+  </Химия>
+</root>

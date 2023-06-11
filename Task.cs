@@ -1,7 +1,6 @@
-﻿using System.Xml.Linq;
-using System.Xml;
-using System.Linq;
-using System;
+﻿using System.Globalization;     // Для NumberFormatInfo.             
+using System.Xml;               // Для XmlConvert, XmlNodeType.
+using System.Xml.Linq;          // Для linq-запросов к Xml.
 
 namespace LinqToXml
 {
@@ -9,6 +8,9 @@ namespace LinqToXml
     {
         private static string pathFilesTasks = GetPathFilesTasks();
 
+        /// <summary>
+        /// Возвращает путь до каталога FilesTasks.
+        /// </summary>
         private static string GetPathFilesTasks()
         {
             string path = Environment.CurrentDirectory;
@@ -21,8 +23,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve07()
         {
-            string pathTextFile = pathFilesTasks + "07-1\\TextFile.txt";
-            string pathXmlFile = pathFilesTasks + "07-1\\XMLFile.xml";
+            string pathTextFile = pathFilesTasks + "01-07\\TextFile.txt";
+            string pathXmlFile = pathFilesTasks + "01-07\\XMLFile.xml";
 
             var numbersLines = File.ReadAllLines(pathTextFile).
                     Select(line => line.Split(' ').
@@ -56,8 +58,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve17()
         {
-            string pathTextFile = pathFilesTasks + "17-2\\TextFile.txt";
-            string pathXmlFile = pathFilesTasks + "17-2\\XMLFile.xml";
+            string pathTextFile = pathFilesTasks + "02-17\\TextFile.txt";
+            string pathXmlFile = pathFilesTasks + "02-17\\XMLFile.xml";
 
             XDocument xDocument = XDocument.Load(pathXmlFile);
 
@@ -81,8 +83,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve27()
         {
-            string pathXmlFile1 = pathFilesTasks + "27-3\\XMLFile1.xml";
-            string pathXmlFile2 = pathFilesTasks + "27-3\\XMLFile2.xml";
+            string pathXmlFile1 = pathFilesTasks + "03-27\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "03-27\\XMLFile2.xml";
 
             XDocument xDocument = XDocument.Load(pathXmlFile1);
 
@@ -103,8 +105,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve37()
         {
-            string pathXmlFile1 = pathFilesTasks + "37-4\\XMLFile1.xml";
-            string pathXmlFile2 = pathFilesTasks + "37-4\\XMLFile2.xml";
+            string pathXmlFile1 = pathFilesTasks + "04-37\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "04-37\\XMLFile2.xml";
 
             XDocument xDocument = XDocument.Load(pathXmlFile1);
 
@@ -132,8 +134,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve47()
         {
-            string pathXmlFile1 = pathFilesTasks + "47-5\\XMLFile1.xml";
-            string pathXmlFile2 = pathFilesTasks + "47-5\\XMLFile2.xml";
+            string pathXmlFile1 = pathFilesTasks + "05-47\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "05-47\\XMLFile2.xml";
 
             XDocument xDocument = XDocument.Load(pathXmlFile1);
 
@@ -166,8 +168,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve57()
         {
-            string pathXmlFile1 = pathFilesTasks + "57-6\\XMLFile1.xml";
-            string pathXmlFile2 = pathFilesTasks + "57-6\\XMLFile2.xml";
+            string pathXmlFile1 = pathFilesTasks + "06-57\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "06-57\\XMLFile2.xml";
 
             string s1 = "namespace1";
             string s2 = "namespace2";
@@ -208,8 +210,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve67()
         {
-            string pathXmlFile1 = pathFilesTasks + "67-7\\XMLFile1.xml";
-            string pathXmlFile2 = pathFilesTasks + "67-7\\XMLFile2.xml";
+            string pathXmlFile1 = pathFilesTasks + "07-67\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "07-67\\XMLFile2.xml";
 
             XDocument xDocument1 = XDocument.Load(pathXmlFile1);
 
@@ -256,8 +258,8 @@ namespace LinqToXml
         /// </summary>
         public static void Solve77()
         {
-            string pathXmlFile1 = pathFilesTasks + "77-8\\XMLFile1.xml";
-            string pathXmlFile2 = pathFilesTasks + "77-8\\XMLFile2.xml";
+            string pathXmlFile1 = pathFilesTasks + "08-77\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "08-77\\XMLFile2.xml";
 
             XDocument xDocument1 = XDocument.Load(pathXmlFile1);
 
@@ -287,14 +289,96 @@ namespace LinqToXml
         /// </summary>
         public static void Solve87()
         {
+            string pathXmlFile1 = pathFilesTasks + "09-87\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "09-87\\XMLFile2.xml";
+
+            XDocument xDocument1 = XDocument.Load(pathXmlFile1);
+
+            XDocument xDocument2 = new(
+                xDocument1.Declaration, 
+                new XElement(
+                    "root",
+                    xDocument1.Root!.Elements().
+                        Select(pupil => pupil.Elements().
+                            Select(mark => mark.Attribute("subject")!.Value).
+                            Distinct().Order().
+                            Select(subject => new XElement(
+                                subject,
+                                new List<string>() { "7", "8", "9", "10", "11" }.
+                                    Select(class_ => new XElement(
+                                        "class" + class_,
+                                        new XAttribute(
+                                            "pupil-count", 
+                                            xDocument1.Root!.Elements().
+                                                Where(pupil => pupil.Attribute("class")!.Value == class_).Count()
+                                        ),
+                                        new XAttribute(
+                                            "mark-count",
+                                            xDocument1.Root!.Elements().
+                                                Where(pupil => pupil.Attribute("class")!.Value == class_).Elements().
+                                                Where(mark => mark.Attribute("subject")!.Value == subject).Count()
+                                        )
+                                ))
+                            )))
+                )
+            );
+
+            xDocument2.Save(pathXmlFile2);
+
             Console.WriteLine("Задание 9 решено.");
         }
 
         /// <summary>
         /// Решить задание 10.
         /// </summary>
-        public static void Solve88()
+        public static void Solve80()
         {
+            string pathXmlFile1 = pathFilesTasks + "10-80\\XMLFile1.xml";
+            string pathXmlFile2 = pathFilesTasks + "10-80\\XMLFile2.xml";
+
+            XDocument xDocument1 = XDocument.Load(pathXmlFile1);
+
+            XDocument xDocument2 = new(
+                    xDocument1.Declaration, // Декларация.
+                    new XElement(           // Корень.
+                        "root",
+                        xDocument1.Root!.Elements().
+                        OrderBy(house => int.Parse(house.Attribute("number")!.Value)).  // Сортировка домов по номеру.
+                        Select(house => new XElement(           // Новый дом.
+                            "house" + house.Attribute("number")!.Value,
+                            house.Elements().                   // Должники дома.
+                            GroupBy(x => int.Parse(x.Element("flat")!.Attribute("value")!.Value) / 36 + 1).  // Группировка по номеру подъезда.
+                            OrderBy(entrance => entrance.Key).  // Сортировка подъездов по номеру.
+                            Select(debtors => new XElement(     // Подъезд.
+                                "entrance",
+                                new XAttribute("number", debtors.Key),      // Номер подъезда.
+                                new XAttribute("count", debtors.Count()),   // Число должников в подъезде.
+                                new XAttribute(                             // Средний размер задолженностей.
+                                    "avr-debt",
+                                    (int)(debtors.Sum(debtor => double.Parse(
+                                        debtor.Element("debt")!.Attribute("value")!.Value,
+                                        new NumberFormatInfo { NumberDecimalSeparator = "." })
+                                    ) * 100) /                  // Суммарный размер задолженностей * 100.
+                                    debtors.Key / 100
+                                ),
+                                debtors.OrderBy(debtor =>       // Сортировка должников подъезда по номеру этажа.
+                                double.Parse(
+                                    debtor.Element("debt")!.Attribute("value")!.Value,
+                                    new NumberFormatInfo { NumberDecimalSeparator = "." })
+                                ).
+                                Select(debtor => new XElement(  // Задолженность.
+                                    "debt",
+                                    debtor.Element("debt")!.Attribute("value")!.Value,  // Размер задолженности.
+                                    new XAttribute("flat", debtor.Element("flat")!.Attribute("value")!.Value),  // Номер квартиры должника.
+                                    new XAttribute("name", debtor.Name.LocalName)       // Имя должника.
+                                    ))
+                                ))
+                            ))
+                        )
+                    );
+
+            xDocument2.Save(pathXmlFile2);
+
             Console.WriteLine("Задание 10 решено.");
         }
     }
