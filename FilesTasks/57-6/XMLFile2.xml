@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:x="namespace1" xmlns:y="namespace2">
+  <x:element1>
+    <y:element11>
+      <y:element111>
+        <!--Comment-->
+      </y:element111>
+      <y:element112>
+        <!--Comment-->
+        <!--Comment-->
+      </y:element112>
+      <y:element113>
+        <!--Comment-->
+        <!--Comment-->
+        <!--Comment-->
+      </y:element113>
+    </y:element11>
+  </x:element1>
+  <x:element2>
+    <y:element21>
+      <y:element211 />
+    </y:element21>
+    <y:element22 />
+  </x:element2>
+  <x:element3 />
+</root>

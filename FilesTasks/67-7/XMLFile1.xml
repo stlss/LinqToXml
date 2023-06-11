@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<client id="10" time="PT5H13M">
+		<year>2000</year>
+		<month>5</month>
+	</client>
+	<client id="10" time="PT5H13M">
+		<year>1999</year>
+		<month>5</month>
+	</client>
+	<client id="10" time="PT5H13M">
+		<year>1999</year>
+		<month>3</month>
+	</client>
+	<client id="10" time="PT5H13M">
+		<year>1999</year>
+		<month>3</month>
+	</client>
+</root>

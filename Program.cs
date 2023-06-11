@@ -1,0 +1,10 @@
+﻿LinqToXml.Task.Solve07();  // Решить задание 1.
+LinqToXml.Task.Solve17();  // Решить задание 2.
+LinqToXml.Task.Solve27();  // Решить задание 3.
+LinqToXml.Task.Solve37();  // Решить задание 4.
+LinqToXml.Task.Solve47();  // Решить задание 5.
+LinqToXml.Task.Solve57();  // Решить задание 6.
+LinqToXml.Task.Solve67();  // Решить задание 7.
+LinqToXml.Task.Solve77();  // Решить задание 8.
+LinqToXml.Task.Solve87();  // Решить задание 9.
+LinqToXml.Task.Solve88();  // Решить задание 10.

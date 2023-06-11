@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <line>
+    <sum-positive>15</sum-positive>
+    <number-negative>-5</number-negative>
+    <number-negative>-4</number-negative>
+    <number-negative>-3</number-negative>
+    <number-negative>-2</number-negative>
+    <number-negative>-1</number-negative>
+  </line>
+  <line>
+    <sum-positive>0</sum-positive>
+  </line>
+  <line>
+    <sum-positive>5</sum-positive>
+  </line>
+  <line>
+    <sum-positive>0</sum-positive>
+    <number-negative>-5</number-negative>
+    <number-negative>-10</number-negative>
+  </line>
+</root>
