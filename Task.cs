@@ -1,5 +1,5 @@
 ﻿using System.Globalization;     // Для NumberFormatInfo.             
-using System.Xml;               // Для XmlConvert, XmlNodeType.
+using System.Xml;               // Для XmlNodeType, XmlConvert.
 using System.Xml.Linq;          // Для linq-запросов к Xml.
 
 namespace LinqToXml
@@ -70,8 +70,9 @@ namespace LinqToXml
             var names = elements.Select(element => element.Name).Distinct();
 
             var lines = names.Select(name => name + "\n" +
-                string.Join("\n", elements.Where(element => element.Name == name).
-                    Select(element => "\t" + element.Text).Order()));
+                (elements.Where(element => element.Name == name).
+                    Select(element => "\t" + element.Text).Order().
+                    Aggregate((x1, x2) => x1 + "\n" + x2)));
 
             File.WriteAllLines(pathTextFile, lines);
 
@@ -221,13 +222,13 @@ namespace LinqToXml
                     "root",
                     xDocument1.Root!.Elements().
                         Select(client => client.Element("year")!.Value).
-                        Distinct().OrderBy(year => int.Parse(year)).
+                        Distinct().OrderBy(int.Parse).
                         Select(year => new XElement(
                             "y" + year,
                             xDocument1.Root!.Elements().
                                 Where(client => client.Element("year")!.Value == year).
                                 Select(client => client.Element("month")!.Value).
-                                Distinct().OrderBy(month => int.Parse(month)).
+                                Distinct().OrderBy(int.Parse).
                                 Select(month => new XElement(
                                     "m" + month,
                                     new XAttribute(
